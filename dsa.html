@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Night Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Protection Script -->
+  <script>
+    const fromDashboard = document.referrer.includes("chart");
+    if (!sessionStorage.getItem("introDone") && !fromDashboard) {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <span class="logo">🌙 NIGHT TRACKER</span>
+    <div class="nav-links">
+      <a href="java.html">JAVA</a>
+      <a href="dsa.html" class="active">DSA</a>
+      <a href="index.html">HOME</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>📊 DSA • NIGHT TRACKER</h1>
+    <p class="subtitle">LOGIC • DEPTH • MASTERY</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div id="dayGrid" class="grid"></div>
+  </main>
+
+  <!-- Dashboard Link -->
+  <section class="dashboard-link">
+    <a href="chart-dsa/chart.html" class="dashboard-card">
+      📈 VIEW DSA PROGRESS DASHBOARD
+    </a>
+  </section>
+
+  <!-- Modal Overlay -->
+  <div id="overlay" class="overlay hidden">
+    <div class="panel">
+      <div class="panel-top">
+        <span id="panelTitle">DAY</span>
+        <button id="closeBtn">×</button>
+      </div>
+      <div id="panelTasks"></div>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="dsa.js"></script>
+
+</body>
+</html>

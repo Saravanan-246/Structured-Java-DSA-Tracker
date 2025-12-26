@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Night Java Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Protection Script -->
+  <script>
+    const fromDashboard = document.referrer.includes("chart");
+    if (!sessionStorage.getItem("introDone") && !fromDashboard) {
+      window.location.href = "index.html";
+    }
+  </script>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <span class="logo">🌙 NIGHT TRACKER</span>
+    <div class="nav-links">
+      <a href="java.html" class="active">JAVA</a>
+      <a href="dsa.html">DSA</a>
+      <a href="index.html">HOME</a>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>☕ JAVA • NIGHT TRACKER</h1>
+    <p class="subtitle">FOCUS • DISCIPLINE • EXECUTE</p>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <div id="dayGrid" class="grid"></div>
+  </main>
+
+  <!-- Dashboard Link -->
+  <section class="dashboard-link">
+    <a href="chart-java/chart.html" class="dashboard-card">
+      📊 VIEW JAVA PROGRESS DASHBOARD
+    </a>
+  </section>
+
+  <!-- Modal Overlay -->
+  <div id="overlay" class="overlay hidden">
+    <div class="panel">
+      <div class="panel-top">
+        <span id="panelTitle"></span>
+        <button id="closeBtn">×</button>
+      </div>
+      <div id="panelTasks"></div>
+    </div>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+
+</body>
+</html>

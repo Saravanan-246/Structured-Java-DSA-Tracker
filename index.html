@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Night Tracker - Welcome</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background -->
+  <div class="intro-bg"></div>
+
+  <!-- Content -->
+  <div class="intro-content">
+    <h1>🌙 NIGHT TRACKER</h1>
+    <p>90 Days to Mastery</p>
+    <button id="startBtn">START JAVA</button>
+  </div>
+
+  <!-- Script -->
+  <script>
+    document.getElementById("startBtn").addEventListener("click", function() {
+      sessionStorage.setItem("introDone", "true");
+      window.location.href = "java.html";
+    });
+  </script>
+
+</body>
+</html>

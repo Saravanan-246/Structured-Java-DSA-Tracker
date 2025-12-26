@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DSA Progress Dashboard</title>
+  <link rel="stylesheet" href="../chart/chart.css" />
+</head>
+<body>
+
+  <div class="top-bar">
+    <a href="../dsa.html" class="back-btn">← BACK</a>
+    <span class="title">DSA DASHBOARD</span>
+  </div>
+
+  <header>
+    <h1>DSA LEARNING OVERVIEW</h1>
+    <p class="subtitle">logic • depth • mastery</p>
+  </header>
+
+  <!-- SAME STRUCTURE -->
+  <section class="section">
+    <h2>DAY STATUS</h2>
+    <div class="day-status">
+      <div>
+        <span class="day-label">CURRENT DAY</span>
+        <span id="currentDay" class="day-value">--</span>
+      </div>
+      <div>
+        <span class="day-label">COMPLETED</span>
+        <span id="completedDays" class="day-value">-- / --</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>PROGRESS</h2>
+    <div class="progress-block">
+      <div class="label-row">
+        <span>DSA</span>
+        <span id="percent">--%</span>
+      </div>
+      <div class="bar">
+        <div class="fill" id="bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>DISTRIBUTION</h2>
+    <div class="pie-wrapper">
+      <div class="pie" id="pieChart"></div>
+      <div class="pie-center"><span>DSA</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>CONSISTENCY</h2>
+    <div class="streak-box">
+      <span id="streak">--</span>
+      <span class="streak-text">DAY STREAK</span>
+    </div>
+  </section>
+
+  <script src="chart.js" defer></script>
+</body>
+</html>
