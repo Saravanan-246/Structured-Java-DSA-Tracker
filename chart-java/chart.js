@@ -1,9 +1,7 @@
 const KEY = "javaPlan";
-const STREAK_KEY = "javaStreak";
-const LAST_KEY = "javaLastDay";
 
-/* PROGRESS % */
-function progressPercent() {
+/* calculate progress */
+function getProgress() {
   const data = JSON.parse(localStorage.getItem(KEY)) || {};
   let total = 0, done = 0;
 
@@ -15,51 +13,34 @@ function progressPercent() {
     });
   });
 
-  return total === 0 ? 0 : Math.round((done / total) * 100);
+  return {
+    done,
+    remaining: Math.max(total - done, 0)
+  };
 }
 
-/* DAY STATUS */
-function dayStatus() {
-  const data = JSON.parse(localStorage.getItem(KEY)) || {};
-  const days = Object.keys(data);
-  let completed = 0;
-  let current = "ALL DONE";
+const ctx = document.getElementById("progressChart");
 
-  for (let d of days) {
-    if (data[d].every(t => t.done)) completed++;
-    else { current = d; break; }
-  }
+if (ctx) {
+  const { done, remaining } = getProgress();
 
-  document.getElementById("completedDays").textContent =
-    `${completed} / ${days.length}`;
-  document.getElementById("currentDay").textContent = current;
+  new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Completed", "Remaining"],
+      datasets: [{
+        data: [done, remaining],
+        backgroundColor: ["#00ff99", "#333"],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      cutout: "70%",
+      plugins: {
+        legend: {
+          labels: { color: "#aaa" }
+        }
+      }
+    }
+  });
 }
-
-/* STREAK */
-function updateStreak() {
-  const today = new Date().toDateString();
-  const last = localStorage.getItem(LAST_KEY);
-  let streak = Number(localStorage.getItem(STREAK_KEY)) || 0;
-
-  const data = JSON.parse(localStorage.getItem(KEY)) || {};
-  const worked = Object.values(data).some(tasks =>
-    tasks.some(t => t.done && t.date === today)
-  );
-
-  if (worked && last !== today) {
-    streak++;
-    localStorage.setItem(STREAK_KEY, streak);
-    localStorage.setItem(LAST_KEY, today);
-  }
-
-  document.getElementById("streak").textContent = streak;
-}
-
-/* INIT */
-const p = progressPercent();
-document.getElementById("percent").textContent = p + "%";
-document.getElementById("bar").style.width = p + "%";
-document.getElementById("pieChart").style.setProperty("--java", p + "%");
-
-dayStatus();
-updateStreak();
